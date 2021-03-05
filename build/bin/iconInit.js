@@ -5,6 +5,12 @@ var fs = require('fs');
 var path = require('path');
 var fontFile = fs.readFileSync(path.resolve(__dirname, '../../packages/theme-chalk/src/icon.scss'), 'utf8');
 var nodes = postcss.parse(fontFile).nodes;
+
+// let _nodes = JSON.stringify(nodes);
+// fs.writeFile(path.resolve(__dirname, '../../study/postcss.parse.nodes.json'), _nodes, 'utf8', function(err) {
+//   if (err) console.log(err);
+// });
+
 var classList = [];
 
 nodes.forEach((node) => {
@@ -19,4 +25,5 @@ nodes.forEach((node) => {
 
 classList.reverse(); // 希望按 css 文件顺序倒序排列
 
-fs.writeFile(path.resolve(__dirname, '../../examples/icon.json'), JSON.stringify(classList), () => {});
+fs.writeFile(path.resolve(__dirname, '../../examples/icon.json'), JSON.stringify(classList), () => {
+});
