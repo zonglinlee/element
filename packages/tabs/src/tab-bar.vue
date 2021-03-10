@@ -1,3 +1,4 @@
+<!--当 tab 组件不设置 type 属性的时候才会使用 当前tab-bar组件，tab-bar组件就是tab组件切换时候下面的 短横线-->
 <template>
   <div class="el-tabs__active-bar" :class="`is-${ rootTabs.tabPosition }`" :style="barStyle"></div>
 </template>

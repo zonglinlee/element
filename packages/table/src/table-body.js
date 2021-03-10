@@ -390,6 +390,7 @@ export default {
     },
 
     wrappedRowRender(row, $index) {
+      console.log(row);
       const store = this.store;
       const { isRowExpanded, assertRowKey } = store;
       const { treeData, lazyTreeNodeMap, childrenColumnName, rowKey } = store.states;

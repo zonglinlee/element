@@ -1,3 +1,4 @@
+<!--这个组件是全局注册到 vue 上面的  所以 tabs.vue / tab-nav.vue / tab-bar.vue 几个组件都没有引入 -->
 <template>
   <div
     class="el-tab-pane"

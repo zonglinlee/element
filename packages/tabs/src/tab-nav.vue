@@ -1,3 +1,6 @@
+<!--
+  1.tab-nav 指的是tab组件上面的各个标签，用来切换不同的 tab-pane 组件
+-->
 <script>
   import TabBar from './tab-bar';
   import { addResizeListener, removeResizeListener } from 'element-ui/src/utils/resize-event';
@@ -214,7 +217,9 @@
           <span class={['el-tabs__nav-prev', scrollable.prev ? '' : 'is-disabled']} on-click={scrollPrev}><i class="el-icon-arrow-left"></i></span>,
           <span class={['el-tabs__nav-next', scrollable.next ? '' : 'is-disabled']} on-click={scrollNext}><i class="el-icon-arrow-right"></i></span>
         ] : null;
-
+      // this._l 是 vue 框架中的遍历方法（Runtime helper for rendering v-for lists.） 返回值是 Array<VNode>
+      // 它接收两个参数  第一个是要渲染的 对象 ，第二个参数是一个 render 函数，render 函数
+      // vue/src/core/instance/render-helpers/render-list.js （vue version 2.6）
       const tabs = this._l(panes, (pane, index) => {
         let tabName = pane.name || pane.index || index;
         const closable = pane.isClosable || editable;
@@ -255,6 +260,7 @@
           </div>
         );
       });
+      // 当 type 未定义时候 才会使用默认的 tab-bar 组件
       return (
         <div class={['el-tabs__nav-wrap', scrollable ? 'is-scrollable' : '', `is-${ this.rootTabs.tabPosition }`]}>
           {scrollBtn}
