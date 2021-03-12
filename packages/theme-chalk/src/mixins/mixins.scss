@@ -65,13 +65,19 @@
   }
 }
 
+//$namespace: 'el';
+//$element-separator: '__';
+//$modifier-separator: '--';
+//$state-prefix: 'is-';
+
 /* BEM
  -------------------------- */
+// @mixin b最后会形成一个 .el-tabs{ } 的css block
 @mixin b($block) {
-  $B: $namespace+'-'+$block !global;
+  $B: $namespace+'-'+$block !global; // A variable declaration flagged as !global will always assign to the global scope.
 
-  .#{$B} {
-    @content;
+  .#{$B} {     // #{} 插值语法
+    @content; //  @content directive, which allows us to pass a content block into a mixin.
   }
 }
 
@@ -82,7 +88,7 @@
   @each $unit in $element {
     $currentSelector: #{$currentSelector + "." + $B + $element-separator + $unit + ","};
   }
-
+  //The @at-root rule is usually written @at-root <selector> { ... } and causes everything within it to be emitted at the root of the document instead of using the normal nesting.
   @if hitAllSpecialNestRule($selector) {
     @at-root {
       #{$selector} {
