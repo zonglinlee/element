@@ -174,6 +174,7 @@
       },
       visibilityChangeHandler() {
         const visibility = document.visibilityState;
+        console.log('visibilityChangeHandler', visibility);
         if (visibility === 'hidden') {
           this.focusable = false;
         } else if (visibility === 'visible') {
@@ -282,6 +283,8 @@
 
     mounted() {
       addResizeListener(this.$el, this.update);
+      // The visibilitychange event is fired at the document when the contents of its tab have become visible or have been hidden.
+      // Edge浏览器不支持此事件，Chrome上支持（切换Chrome tab时候会触发）
       document.addEventListener('visibilitychange', this.visibilityChangeHandler);
       window.addEventListener('blur', this.windowBlurHandler);
       window.addEventListener('focus', this.windowFocusHandler);

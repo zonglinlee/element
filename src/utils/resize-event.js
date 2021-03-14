@@ -15,6 +15,10 @@ const resizeHandler = function(entries) {
 };
 
 /* istanbul ignore next */
+// The ResizeObserver constructor creates a new ResizeObserver object, which can be used to report changes to the content or border box of an Element or the bounding box of an SVGElement.
+// ResizeObserver = new ResizeObserver(callback)
+// ResizeObserver.observe()  // Initiates the observing of a specified
+// The function called whenever an observed resize occurs.
 export const addResizeListener = function(element, fn) {
   if (isServer) return;
   if (!element.__resizeListeners__) {

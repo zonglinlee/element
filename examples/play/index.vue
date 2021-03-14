@@ -18,7 +18,7 @@
           label="地址">
       </el-table-column>
     </el-table>
-    <el-tabs v-model="editableTabsValue"  editable @edit="handleTabsEdit" style="margin-top: 20px;">
+    <el-tabs v-model="editableTabsValue"   @edit="handleTabsEdit" style="margin-top: 20px;">
       <el-tab-pane
           :key="item.name"
           v-for="(item, index) in editableTabs"
