@@ -51,6 +51,7 @@
       currentName(value) {
         if (this.$refs.nav) {
           this.$nextTick(() => {
+            // vm.$refs:一个对象，持有注册过 ref attribute 的所有 DOM 元素和组件实例。
             this.$refs.nav.$nextTick(_ => {
               this.$refs.nav.scrollToActiveTab();
             });
@@ -60,9 +61,9 @@
     },
 
     methods: {
-      // 这个函数用来动态更新 tab-pane 组件，分别再tab组件 创建/挂载/更新 的时候调用
+      // 这个函数用来动态更新 tab-pane 组件，设置this.panes的值，分别再tab组件 创建/挂载/更新 的时候调用
       calcPaneInstances(isForceUpdate = false) {
-        console.log('this.$slots.default:', this.$slots.default); // [VNode, VNode] 输出一个 VNode数组
+        // console.log('this.$slots.default:', this.$slots.default); // [VNode, VNode] 输出一个 VNode数组
         if (this.$slots.default) {
           // 筛选出 插槽中 ElTabPane 组件
           // vnode.componentOptions.Ctor 对应的就是子组件的构造函数
@@ -192,7 +193,8 @@
       if (!this.currentName) {
         this.setCurrentName('0');
       }
-
+      // 监听当前实例上的自定义事件。事件可以由 vm.$emit 触发。回调函数会接收所有传入事件触发函数的额外参数。
+      // 在子组件tab-pane.vue 文件中会触发 父组件的事件 this.$parent.$emit('tab-nav-update');
       this.$on('tab-nav-update', this.calcPaneInstances.bind(null, true));
     },
 

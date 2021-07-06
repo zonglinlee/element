@@ -5,6 +5,8 @@ import { PopupManager } from 'element-ui/src/utils/popup';
 import afterLeave from 'element-ui/src/utils/after-leave';
 import merge from 'element-ui/src/utils/merge';
 
+// 使用基础 Vue 构造器，创建一个“子类”。参数是一个包含组件选项的对象。data 选项是特例，需要注意 - 在 Vue.extend() 中它必须是函数
+// 继承 loadingVue 组件
 const LoadingConstructor = Vue.extend(loadingVue);
 
 const defaults = {
@@ -22,6 +24,7 @@ LoadingConstructor.prototype.originalOverflow = '';
 
 LoadingConstructor.prototype.close = function() {
   if (this.fullscreen) {
+    // fullscreenLoading 是一个 Loading 实例，在关闭的时候取消掉
     fullscreenLoading = undefined;
   }
   afterLeave(this, _ => {
@@ -81,7 +84,10 @@ const Loading = (options = {}) => {
   }
 
   let parent = options.body ? document.body : options.target;
-  let instance = new LoadingConstructor({
+  // el选项：string | Element，限制：只在用 new 创建实例时生效。
+  // 提供一个在页面上已存在的 DOM 元素作为 Vue 实例的挂载目标。可以是 CSS 选择器，也可以是一个 HTMLElement 实例。
+  // 如果在实例化时存在这个选项，实例将立即进入编译过程，否则，需要显式调用 vm.$mount() 手动开启编译。
+  let instance = new LoadingConstructor({ // 初始化一个Loading实例
     el: document.createElement('div'),
     data: options
   });
@@ -93,6 +99,7 @@ const Loading = (options = {}) => {
   if (options.fullscreen && options.lock) {
     addClass(parent, 'el-loading-parent--hidden');
   }
+  // $el,类型Element, Vue 实例使用的根 DOM 元素。
   parent.appendChild(instance.$el);
   Vue.nextTick(() => {
     instance.visible = true;

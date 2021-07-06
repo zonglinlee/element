@@ -86,7 +86,7 @@
       },
 
       disabledDate: {},
-  
+
       cellClassName: {},
 
       minDate: {},
@@ -387,6 +387,7 @@
       },
 
       handleClick(event) {
+
         let target = event.target;
         if (target.tagName === 'SPAN') {
           target = target.parentNode.parentNode;
@@ -396,7 +397,6 @@
         }
 
         if (target.tagName !== 'TD') return;
-
         const row = target.parentNode.rowIndex - 1;
         const column = this.selectionMode === 'week' ? 1 : target.cellIndex;
         const cell = this.rows[row][column];

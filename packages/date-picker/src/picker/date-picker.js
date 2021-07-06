@@ -3,6 +3,7 @@ import DatePanel from '../panel/date';
 import DateRangePanel from '../panel/date-range';
 import MonthRangePanel from '../panel/month-range';
 
+// 返回日期选择框类型
 const getPanel = function(type) {
   if (type === 'daterange' || type === 'datetimerange') {
     return DateRangePanel;

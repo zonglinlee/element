@@ -152,7 +152,7 @@
       border-bottom: 1px solid $--border-color-light;
     }
     > .el-tabs__header .el-tabs__nav-wrap::after {
-      content: none;
+      content: none; // none 不会产生伪类元素
     }
     > .el-tabs__header .el-tabs__nav {
       border: 1px solid $--border-color-light;

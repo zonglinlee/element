@@ -1,3 +1,5 @@
+// 创建了一个隐藏得 textArea元素，然后计算其高度，并返回，然后删除此隐藏元素
+
 let hiddenTextarea;
 
 const HIDDEN_STYLE = `
@@ -58,6 +60,7 @@ export default function calcTextareaHeight(
   if (!hiddenTextarea) {
     hiddenTextarea = document.createElement('textarea');
     document.body.appendChild(hiddenTextarea);
+    console.log(hiddenTextarea);
   }
 
   let {
@@ -100,5 +103,6 @@ export default function calcTextareaHeight(
   result.height = `${ height }px`;
   hiddenTextarea.parentNode && hiddenTextarea.parentNode.removeChild(hiddenTextarea);
   hiddenTextarea = null;
+  console.log('result:', result);
   return result;
 };

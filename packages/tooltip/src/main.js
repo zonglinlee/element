@@ -132,7 +132,7 @@ export default {
     if (this.value && this.popperVM) {
       this.popperVM.$nextTick(() => {
         if (this.value) {
-          this.updatePopper();
+          this.updatePopper(); // 这里会创建proper实例
         }
       });
     }

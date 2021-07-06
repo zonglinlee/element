@@ -118,7 +118,10 @@
       update() {
         if (!this.$refs.nav) return;
         const sizeName = this.sizeName;
+        // console.log('sizeName:', sizeName, firstUpperCase(sizeName));
+        // this.$refs.nav是一个dom元素，它可以获取到 offsetWidth 这个属性
         const navSize = this.$refs.nav[`offset${firstUpperCase(sizeName)}`];
+        // console.log('navSize:', navSize);
         const containerSize = this.$refs.navScroll[`offset${firstUpperCase(sizeName)}`];
         const currentOffset = this.navOffset;
 

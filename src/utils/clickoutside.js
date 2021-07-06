@@ -15,6 +15,8 @@ let seed = 0;
 
 function createDocumentHandler(el, binding, vnode) {
   return function(mouseup = {}, mousedown = {}) {
+    console.log('vnode');
+    console.log(vnode);
     if (!vnode ||
       !vnode.context ||
       !mouseup.target ||

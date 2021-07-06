@@ -1,3 +1,4 @@
+<!-- 如果不设置target属性则初始化的时候将 this.el 设置为document对象-->
 <template>
   <transition name="el-fade-in">
     <div
@@ -68,6 +69,7 @@ export default {
   methods: {
     init() {
       this.container = document;
+      // 如果不设置target属性则初始化的时候将 this.el 设置为document对象
       this.el = document.documentElement;
       if (this.target) {
         this.el = document.querySelector(this.target);
@@ -92,6 +94,7 @@ export default {
       const rAF = window.requestAnimationFrame || (func => setTimeout(func, 16));
       const frameFunc = () => {
         const progress = (Date.now() - beginTime) / 500;
+        console.log('progeress:', progress);
         if (progress < 1) {
           el.scrollTop = beginValue * (1 - easeInOutCubic(progress));
           rAF(frameFunc);
